@@ -5,7 +5,6 @@ import numpy as np
 import tensorflow as tf
 from keras.models import model_from_json
 import pandas as pd
-import altair as alt
 
 st.title ('Modelo de classificação de práticas tributárias')
 with st.form (key = "include_dadosempresas"):
