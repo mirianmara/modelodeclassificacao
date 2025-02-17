@@ -6,11 +6,8 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
-# Diretório onde o modelo está localizado (ajuste se necessário)
-model_directory = ""  # ou model_directory = "models" se estiver em um subdiretório
-
 # Caminho completo para o arquivo do modelo
-model_path = os.path.join(model_directory, "new_model.keras") if model_directory else "new_model.keras"
+model_path = "/mount/src/modelodeclassificacao/new_model.keras"  # Substitua pelo caminho real
 
 # Verifica se o arquivo existe
 if os.path.exists(model_path):
@@ -72,6 +69,7 @@ if input_button_submit:
         consc = 1.0
     elif input_Setor == "Consumo não cíclico":
         consnc = 1.0
+            
     elif input_Setor == "Materiais básicos":
         matb = 1.0
     elif input_Setor == "Petróleo, gás e biocombustíveis":
@@ -87,8 +85,8 @@ if input_button_submit:
 
     # Criação do DataFrame para teste
     x_test = pd.DataFrame({"ROA": roa, "ETRDIF": etrdif, "ETRDIFDEF": etrdifdef, "END": end, "PPE": ppe,
-                             "comun": comun, "consc": consc, "consnc": consnc, "pet": pet, "saud": saud,
-                             "ind": ind, "ti": ti, "matb": matb, "UTIL": util}, index=[0])
+                                 "comun": comun, "consc": consc, "consnc": consnc, "pet": pet, "saud": saud,
+                                 "ind": ind, "ti": ti, "matb": matb, "UTIL": util}, index=[0])
 
     # Predição do modelo
     y_pred = ann1.predict(x_test)
@@ -104,11 +102,11 @@ if input_button_submit:
     else:
         st.write("Práticas tributárias muito agressivas")
 
-text = st.text('''Possibilidades de classificação, considerando o nível ótimo de práticas tributárias
-pela perspectiva do desempenho corporativo:
-    
-    
-    Práticas tributárias muito conservadoras;
-    Práticas tributárias conservadoras;
-    Práticas tributárias agressivas e
-    Práticas tributárias muito agressivas.''')
+    text = st.text('''Possibilidades de classificação, considerando o nível ótimo de práticas tributárias
+    pela perspectiva do desempenho corporativo:
+        
+        
+        Práticas tributárias muito conservadoras;
+        Práticas tributárias conservadoras;
+        Práticas tributárias agressivas e
+        Práticas tributárias muito agressivas.''')
