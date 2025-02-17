@@ -6,25 +6,15 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
-current_directory = os.getcwd()
-st.write(f"Diretório de trabalho: {current_directory}")
+# Caminho para o arquivo do modelo
+model_path = "new_model.keras"
 
-if os.path.exists("new_model.keras"):
-    print("Arquivo new_model.keras encontrado!")
-else:
-    print("Arquivo new_model.keras não encontrado!")
-
-# Caminho completo para o arquivo do modelo
-model_path = "new_model.keras"  # ou o caminho completo, se necessário
-
-# Verifica se o arquivo existe
-if os.path.exists(model_path):
-    print("Arquivo new_model.keras encontrado!")
-    # Carrega o novo modelo
-    ann1 = load_model(model_path)
-else:
-    print("Arquivo new_model.keras não encontrado!")
-    st.error(f"Arquivo do modelo não encontrado. Certifique-se de que '{model_path}' está no local correto.")
+try:
+    ann1 = tf.keras.models.load_model(model_path, dtype='float32')
+    print("Modelo carregado com sucesso!")
+except Exception as e:
+    print(f"Erro ao carregar o modelo: {e}")
+    st.error(f"Erro ao carregar o modelo: {e}")
     st.stop()
 
 # Resto do seu código Streamlit
