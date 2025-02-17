@@ -10,7 +10,7 @@ import pandas as pd
 model_path = "new_model.keras"
 
 try:
-    ann1 = tf.keras.models.load_model(model_path, dtype='float32')
+    ann1 = tf.keras.models.load_model(model_path)
     print("Modelo carregado com sucesso!")
 except Exception as e:
     print(f"Erro ao carregar o modelo: {e}")
@@ -70,7 +70,7 @@ if input_button_submit:
     elif input_Setor == "Materiais básicos":
         matb = 1.0
     elif input_Setor == "Petróleo, gás e biocombustíveis":
-        pet = 1.0
+        pet = 0.0
     elif input_Setor == "Saúde":
         saud = 1.0
     elif input_Setor == "Tecnologia da informação":
