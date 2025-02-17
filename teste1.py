@@ -5,6 +5,10 @@ import numpy as np
 import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
+
+current_directory = os.getcwd()
+st.write(f"Diretório de trabalho: {current_directory}")
+
 if os.path.exists("new_model.keras"):
     print("Arquivo new_model.keras encontrado!")
 else:
