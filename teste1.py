@@ -10,10 +10,6 @@ if os.path.exists("new_model.keras"):
 else:
     print("Arquivo new_model.keras não encontrado!")
 
-if os.path.exists("new_model.keras"):
-    print("Arquivo new_model.keras encontrado!")
-else:
-    print("Arquivo new_model.keras não encontrado!")
 # Caminho completo para o arquivo do modelo
 model_path = "new_model.keras"  # ou o caminho completo, se necessário
 
