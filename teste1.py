@@ -6,8 +6,11 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
+# Diretório onde o modelo está localizado (ajuste se necessário)
+model_directory = ""  # ou model_directory = "models" se estiver em um subdiretório
+
 # Caminho completo para o arquivo do modelo
-model_path = "/mount/src/modelodeclassificacao/new_model.keras"
+model_path = os.path.join(model_directory, "new_model.keras") if model_directory else "new_model.keras"
 
 # Verifica se o arquivo existe
 if os.path.exists(model_path):
