@@ -6,6 +6,15 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
+# Imprime o diretório atual
+current_directory = os.getcwd()
+st.write(f"Diretório atual: {current_directory}")
+
+# Lista os arquivos no diretório atual
+st.write("Arquivos no diretório:")
+for filename in os.listdir(current_directory):
+    st.write(filename)
+
 # Caminho completo para o arquivo do modelo
 model_path = "/mount/src/modelodeclassificacao/new_model.keras"  # Substitua pelo caminho real
 
@@ -69,7 +78,6 @@ if input_button_submit:
         consc = 1.0
     elif input_Setor == "Consumo não cíclico":
         consnc = 1.0
-            
     elif input_Setor == "Materiais básicos":
         matb = 1.0
     elif input_Setor == "Petróleo, gás e biocombustíveis":
