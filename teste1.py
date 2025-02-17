@@ -9,12 +9,19 @@ import pandas as pd
 # Caminho para o arquivo do modelo
 model_path = "new_model.keras"
 
-try:
-    ann1 = tf.keras.models.load_model(model_path)
-    print("Modelo carregado com sucesso!")
-except Exception as e:
-    print(f"Erro ao carregar o modelo: {e}")
-    st.error(f"Erro ao carregar o modelo: {e}")
+# Verifica se o arquivo existe
+if os.path.exists(model_path):
+    print("Arquivo new_model.keras encontrado!")
+    try:
+        ann1 = tf.keras.models.load_model(model_path)
+        print("Modelo carregado com sucesso!")
+    except Exception as e:
+        print(f"Erro ao carregar o modelo: {e}")
+        st.error(f"Erro ao carregar o modelo: {e}")
+        st.stop()
+else:
+    print("Arquivo new_model.keras não encontrado!")
+    st.error(f"Arquivo do modelo não encontrado. Certifique-se de que '{model_path}' está no local correto.")
     st.stop()
 
 # Resto do seu código Streamlit
@@ -22,8 +29,7 @@ st.title('Modelo de classificação de práticas tributárias')
 with st.form(key="include_dadosempresas"):
     input_Ativo_Def = st.number_input(label="Insira o valor do ativo total do ano anterior")
     input_Ativo_At = st.number_input(label="Insira o valor do ativo total do ano atual")
-    input_EBIT = st.number_input(label="Insira o valor do EBIT da empresa")
-    input_IRCS_Def = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano anterior")
+    input_EBIT = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano anterior")
     input_IRCS = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano atual")
     input_LAIR_Def = st.number_input(label="Insira o valor do LAIR da empresa do ano anterior")
     input_LAIR = st.number_input(label="Insira o valor do LAIR da empresa do ano atual")
