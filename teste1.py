@@ -6,17 +6,8 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
-# Imprime o diretório atual
-current_directory = os.getcwd()
-st.write(f"Diretório atual: {current_directory}")
-
-# Lista os arquivos no diretório atual
-st.write("Arquivos no diretório:")
-for filename in os.listdir(current_directory):
-    st.write(filename)
-
 # Caminho completo para o arquivo do modelo
-model_path = "/mount/src/modelodeclassificacao/new_model.keras"  # Substitua pelo caminho real
+model_path = "/mount/src/modelodeclassificacao/new_model.keras"
 
 # Verifica se o arquivo existe
 if os.path.exists(model_path):
@@ -93,8 +84,8 @@ if input_button_submit:
 
     # Criação do DataFrame para teste
     x_test = pd.DataFrame({"ROA": roa, "ETRDIF": etrdif, "ETRDIFDEF": etrdifdef, "END": end, "PPE": ppe,
-                                 "comun": comun, "consc": consc, "consnc": consnc, "pet": pet, "saud": saud,
-                                 "ind": ind, "ti": ti, "matb": matb, "UTIL": util}, index=[0])
+                             "comun": comun, "consc": consc, "consnc": consnc, "pet": pet, "saud": saud,
+                             "ind": ind, "ti": ti, "matb": matb, "UTIL": util}, index=[0])
 
     # Predição do modelo
     y_pred = ann1.predict(x_test)
@@ -110,11 +101,11 @@ if input_button_submit:
     else:
         st.write("Práticas tributárias muito agressivas")
 
-    text = st.text('''Possibilidades de classificação, considerando o nível ótimo de práticas tributárias
-    pela perspectiva do desempenho corporativo:
-        
-        
-        Práticas tributárias muito conservadoras;
-        Práticas tributárias conservadoras;
-        Práticas tributárias agressivas e
-        Práticas tributárias muito agressivas.''')
+text = st.text('''Possibilidades de classificação, considerando o nível ótimo de práticas tributárias
+pela perspectiva do desempenho corporativo:
+    
+    
+    Práticas tributárias muito conservadoras;
+    Práticas tributárias conservadoras;
+    Práticas tributárias agressivas e
+    Práticas tributárias muito agressivas.''')
