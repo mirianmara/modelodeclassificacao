@@ -7,28 +7,20 @@ from keras.models import load_model
 import pandas as pd
 
 # Caminho para o arquivo do modelo
-model_path = "new_model.keras"
-
-# Lista os arquivos no diretório de trabalho
-files = os.listdir()
-st.write("Arquivos no diretório de trabalho:")
-for file in files:
-    st.write(file)
+model_path = "new_model.h5"
 
 # Verifica se o arquivo existe
 if os.path.exists(model_path):
-    print("Arquivo new_model.keras encontrado!")
+    print("Arquivo new_model.h5 encontrado!")
     try:
-        # Tenta carregar o modelo usando o caminho absoluto
-        model_path = os.path.abspath(model_path)
-        ann1 = tf.keras.models.load_model(model_path)
+        ann1 = load_model(model_path)
         print("Modelo carregado com sucesso!")
     except Exception as e:
         print(f"Erro ao carregar o modelo: {e}")
         st.error(f"Erro ao carregar o modelo: {e}")
         st.stop()
 else:
-    print("Arquivo new_model.keras não encontrado!")
+    print("Arquivo new_model.h5 não encontrado!")
     st.error(f"Arquivo do modelo não encontrado. Certifique-se de que '{model_path}' está no local correto.")
     st.stop()
 
