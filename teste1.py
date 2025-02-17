@@ -9,10 +9,18 @@ import pandas as pd
 # Caminho para o arquivo do modelo
 model_path = "new_model.keras"
 
+# Lista os arquivos no diretório de trabalho
+files = os.listdir()
+st.write("Arquivos no diretório de trabalho:")
+for file in files:
+    st.write(file)
+
 # Verifica se o arquivo existe
 if os.path.exists(model_path):
     print("Arquivo new_model.keras encontrado!")
     try:
+        # Tenta carregar o modelo usando o caminho absoluto
+        model_path = os.path.abspath(model_path)
         ann1 = tf.keras.models.load_model(model_path)
         print("Modelo carregado com sucesso!")
     except Exception as e:
