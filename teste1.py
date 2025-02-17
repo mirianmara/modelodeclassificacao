@@ -6,8 +6,15 @@ import tensorflow as tf
 from keras.models import load_model
 import pandas as pd
 
-# Carrega o novo modelo
-ann1 = load_model("new_model.keras")
+# Verifica se o arquivo existe
+if os.path.exists("new_model.keras"):
+    print("Arquivo new_model.keras encontrado!")
+    # Carrega o novo modelo
+    ann1 = load_model("new_model.keras")
+else:
+    print("Arquivo new_model.keras não encontrado!")
+    st.error("Arquivo do modelo não encontrado. Certifique-se de que 'new_model.keras' está no mesmo diretório.")
+    st.stop()
 
 # Resto do seu código Streamlit
 st.title('Modelo de classificação de práticas tributárias')
@@ -18,7 +25,7 @@ with st.form(key="include_dadosempresas"):
     input_IRCS_Def = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano anterior")
     input_IRCS = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano atual")
     input_LAIR_Def = st.number_input(label="Insira o valor do LAIR da empresa do ano anterior")
-    input_LAIR = st.number_input(label="Insira o valor do LAIR da empresa do atual")
+    input_LAIR = st.number_input(label="Insira o valor do LAIR da empresa do ano atual")
     input_IMOB = st.number_input(label="Insira o valor do ativo imobilizado da empresa")
     input_DIV = st.number_input(label="Insira o valor da dívida de longo prazo")
     input_Setor = st.selectbox("Selecione o setor da empresa", ["Bens industriais", "Comunicações", "Consumo cíclico", "Consumo não cíclico",
