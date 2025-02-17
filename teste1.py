@@ -3,9 +3,29 @@ import os
 from joblib import dump, load
 import numpy as np
 import tensorflow as tf
-from keras.models import model_from_json
+from keras.models import model_from_json, load_model
 import pandas as pd
+# Carrega o modelo antigo
+json_file = open('model.json', 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+loaded_model.load_weights("model.h5")
 
+# Compila o modelo
+loaded_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Salva o modelo no novo formato
+loaded_model.save("new_model.keras")
+
+# Remove o código antigo de carregamento
+# ann1 = model_from_json(loaded_model_json)
+# ann1.load_weights("model.h5")
+
+# Carrega o novo modelo
+ann1 = load_model("new_model.keras")
+
+# Resto do seu código Streamlit
 st.title ('Modelo de classificação de práticas tributárias')
 with st.form (key = "include_dadosempresas"):
     input_Ativo_Def = st.number_input (label = "Insira o valor do ativo total do ano anterior")
