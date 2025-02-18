@@ -99,13 +99,13 @@ if input_button_submit:
 
     # Exibição do resultado
     if y_pred_arg == 1:
-        st.write("Práticas tributárias muito conservadoras")
+        st.markdown("<span style='color: red; font-weight: bold;'>Práticas tributárias muito conservadoras</span>", unsafe_allow_html=True)
     elif y_pred_arg == 2:
-        st.write("Práticas tributárias conservadoras")
+        st.markdown("<span style='color: red; font-weight: bold;'>Práticas tributárias conservadoras</span>", unsafe_allow_html=True)
     elif y_pred_arg == 3:
-        st.write("Práticas tributárias agressivas")
+        st.markdown("<span style='color: red; font-weight: bold;'>Práticas tributárias agressivas</span>", unsafe_allow_html=True)
     else:
-        st.write("Práticas tributárias muito agressivas")
+        st.markdown("<span style='color: red; font-weight: bold;'>Práticas tributárias muito agressivas</span>", unsafe_allow_html=True)
 
 text = st.text('''Possibilidades de classificação, considerando o nível ótimo de práticas tributárias
 pela perspectiva do desempenho corporativo:
