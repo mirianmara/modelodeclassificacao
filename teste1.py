@@ -4,6 +4,7 @@ from joblib import dump, load
 import numpy as np
 import tensorflow as tf
 from keras.models import load_model
+from tensorflow.keras.models import Sequential
 import pandas as pd
 
 # Caminho para o arquivo do modelo
@@ -13,7 +14,7 @@ model_path = "new_model.h5"
 if os.path.exists(model_path):
     print("Arquivo new_model.h5 encontrado!")
     try:
-        ann1 = load_model(model_path)
+        ann1 = tf.keras.models.load_model(model_path)
         print("Modelo carregado com sucesso!")
     except Exception as e:
         print(f"Erro ao carregar o modelo: {e}")
@@ -29,7 +30,8 @@ st.title('Modelo de classificação de práticas tributárias')
 with st.form(key="include_dadosempresas"):
     input_Ativo_Def = st.number_input(label="Insira o valor do ativo total do ano anterior")
     input_Ativo_At = st.number_input(label="Insira o valor do ativo total do ano atual")
-    input_EBIT = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano anterior")
+    input_EBIT = st.number_input(label="Insira o valor do EBIT da empresa")
+    input_IRCS_Def = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano anterior")
     input_IRCS = st.number_input(label="Insira o valor da despesa com IR e CSLL da empresa do ano atual")
     input_LAIR_Def = st.number_input(label="Insira o valor do LAIR da empresa do ano anterior")
     input_LAIR = st.number_input(label="Insira o valor do LAIR da empresa do ano atual")
